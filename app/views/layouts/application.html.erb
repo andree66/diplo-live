@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gemsapp2</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+  <div class="pull-right">
+    <nav>
+      <ul class="nav nav-pills">
+        <% if user_signed_in? %>
+          logged in as <strong><%= current_user.email %></strong>
+            <div class="clearfix"></div>
+            <li><%= link_to 'edita la cuenta', edit_user_registration_path, :class => 'navbar-link' %></li>
+            <li><%= link_to 'eliminar ', destroy_user_session_path,  :class => 'navbar-link' %></li>
+        <% else %>
+            <li><%= link_to 'crear cuenta', new_user_registration_path, :class => 'navbar-link' %></li>
+            <li><%= link_to 'iniciar sesion ', new_user_session_path,  :class => 'navbar-link' %></li>
+          <% end %>
+      </ul>
+    </nav>
+  </div>
+  <div class="clearfix"></div>
+  <div class="col-lg-8">
+    <%= yield %>
+  </div>
+</div>
+</body>
+</html>
